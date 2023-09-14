@@ -40,6 +40,7 @@ public class ClirnetSanity
 		
 		WebAccess.set();
 		WebDriverInit.getDriver().manage().window().maximize();
+		//xtra
 		
 //URL configuartion		
 		//UAT URL
