@@ -301,7 +301,7 @@ public class ClirnetSanity
         	System.out.println(doctorname);
           
         	Thread.sleep(5000);
-        	Assert.assertEquals(doctorname, "AAnant Kumar Sahu");
+        	Assert.assertEquals(doctorname, "Anant Kumar Sahu");
         	
         	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("common_nav_bar_certificate")));
         	WebDriverInit.getDriver().findElement(By.id("common_nav_bar_certificate")).click();
