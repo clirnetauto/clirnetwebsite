@@ -63,7 +63,7 @@ public class Basic {
 		}
 		
 		
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		//driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		
 		WebDriverInit.initDriver(driver);
 		return driver;
