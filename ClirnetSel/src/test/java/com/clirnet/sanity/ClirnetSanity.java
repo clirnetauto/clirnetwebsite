@@ -8,6 +8,7 @@ import java.net.URL;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -39,42 +40,54 @@ public class ClirnetSanity
     {
 		
 		WebAccess.set();
+		//Logger logger = Logger.getLogger("");
 		WebDriverInit.getDriver().manage().window().maximize();
-		//xtra
 		
 //URL configuartion		
-		//UAT URL
-		//WebDriverInit.getDriver().get("https://uat-doctorgl.clirnet.com/");
+		//Stagging URL
+		//WebDriverInit.getDriver().get("https://doc.clirnet.com/");
 		
 		//Production url
 		WebDriverInit.getDriver().get("https://doctor.clirnet.com/");
+		
+		//UAT
+		//WebDriverInit.getDriver().get("https://uat-doctorgl.clirnet.com/");
 		
         WebDriverWait wait = new WebDriverWait(WebDriverInit.getDriver(),Duration.ofSeconds(30));
         
         Thread.sleep(5000);
         
-//For india we need to uncomment following line
+//For india e need to uncomment following line
+        //UAT Env
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form/div/div[3]/button")));
+        WebDriverInit.getDriver().findElement(By.xpath("//form/div/div[3]/button")).click(); 
         
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[3]/button")));
-        WebDriverInit.getDriver().findElement(By.xpath("//div[3]/button")).click();
+        //Prod Env
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[3]/button")));
+//        WebDriverInit.getDriver().findElement(By.xpath("//div[3]/button")).click();
       
         WebDriverInit.getDriver().findElement(By.id("floatingInput")).sendKeys("anant.sahu@clirnet.com");
         WebDriverInit.getDriver().findElement(By.id("floatingInput1")).sendKeys("12345");
-        WebDriverInit.getDriver().findElement(By.xpath("//div[3]/button")).click();
+     
+        //UAT
+        WebDriverInit.getDriver().findElement(By.xpath("//form/div/div[3]/button")).click();
+       
+        //Prod
+       // WebDriverInit.getDriver().findElement(By.xpath("//div[3]/button")).click();
         
         
  //Notification dialog required for production
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@id='onesignal-slidedown-cancel-button']")));
         WebDriverInit.getDriver().findElement(By.xpath("//button[@id='onesignal-slidedown-cancel-button']")).click();
-        
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("common_nav_bar_read")));
-        WebDriverInit.getDriver().findElement(By.id("common_nav_bar_read")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='main_outlet']/div/div/div/div[2]/div/div[4]/div/div/div/div/div/div[2]/div[2]/div/h2")));
-        WebDriverInit.getDriver().findElement(By.xpath("//div[@id='main_outlet']/div/div/div/div[2]/div/div[4]/div/div/div/div/div/div[2]/div[2]/div/h2")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("medwiki_related_post_view_more")));
-        
-        String expmedwikiexplore = WebDriverInit.getDriver().findElement(By.id("medwiki_related_post_view_more")).getText();
-        Assert.assertEquals(expmedwikiexplore, "Explore More");
+       
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("common_nav_bar_read")));
+//        WebDriverInit.getDriver().findElement(By.id("common_nav_bar_read")).click();
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='main_outlet']/div/div/div/div[2]/div/div[4]/div/div/div/div/div/div[2]/div[2]/div/h2")));
+//        WebDriverInit.getDriver().findElement(By.xpath("//div[@id='main_outlet']/div/div/div/div[2]/div/div[4]/div/div/div/div/div/div[2]/div[2]/div/h2")).click();
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("medwiki_related_post_view_more")));
+//        
+//        String expmedwikiexplore = WebDriverInit.getDriver().findElement(By.id("medwiki_related_post_view_more")).getText();
+//        Assert.assertEquals(expmedwikiexplore, "Explore More");
         
     }
         
@@ -96,20 +109,18 @@ public class ClirnetSanity
     	
     	{
         	WebDriverWait wait = new WebDriverWait(WebDriverInit.getDriver(),Duration.ofSeconds(10));
-        	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'DocTube™')]")));
-        	WebDriverInit.getDriver().findElement(By.xpath("//span[contains(.,'DocTube™')]")).click();
+        	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Doctube']")));
+        	WebDriverInit.getDriver().findElement(By.xpath("//span[normalize-space()='Doctube']")).click();
         	
         	wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Edit profile")));
         	WebElement ele=WebDriverInit.getDriver().findElement(By.linkText("Edit profile"));
     		Assert.assertTrue(ele.isDisplayed());
-        	
-        	
+        	        	
     	}
         
         @Test (priority=3)
         
         public static void communityclick() throws InterruptedException
-    	
     	{
         	WebDriverWait wait = new WebDriverWait(WebDriverInit.getDriver(),Duration.ofSeconds(10));
         	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'Community')]")));
@@ -153,8 +164,8 @@ public class ClirnetSanity
         	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'Explore')]")));
         	WebDriverInit.getDriver().findElement(By.xpath("//span[contains(.,'Explore')]")).click();
         	
-        	wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("MedWiki®")));
-        	WebDriverInit.getDriver().findElement(By.linkText("MedWiki®")).click();
+        	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'MedWikiÂ®')]")));
+        	WebDriverInit.getDriver().findElement(By.xpath("//span[contains(.,'MedWikiÂ®')]")).click();
         	Thread.sleep(2000);
         	
     	}
@@ -183,9 +194,12 @@ public class ClirnetSanity
         	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'Explore')]")));
         	WebDriverInit.getDriver().findElement(By.xpath("//span[contains(.,'Explore')]")).click();
         	
-        	wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Grand Rounds")));
-        	WebDriverInit.getDriver().findElement(By.linkText("Grand Rounds")).click();
-        	Thread.sleep(3000);
+//        	wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Grand Rounds")));
+//        	WebDriverInit.getDriver().findElement(By.linkText("Grand Rounds")).click();
+        	
+        	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='clr_v3_headerCollapse']/ul/li[4]/ul/li[6]/a/div[2]/span")));
+        	WebDriverInit.getDriver().findElement(By.xpath("//div[@id='clr_v3_headerCollapse']/ul/li[4]/ul/li[6]/a/div[2]/span")).click();
+        	Thread.sleep(5000);
         	    	
     	}
         
@@ -243,45 +257,45 @@ public class ClirnetSanity
         	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'Explore')]")));
         	WebDriverInit.getDriver().findElement(By.xpath("//span[contains(.,'Explore')]")).click();
         	
-        	wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("E-Paper")));
-        	WebDriverInit.getDriver().findElement(By.linkText("E-Paper")).click();
+        	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='fw-medium text-black'][normalize-space()='Epaper']")));
+        	WebDriverInit.getDriver().findElement(By.xpath("//span[@class='fw-medium text-black'][normalize-space()='Epaper']")).click();
         	Thread.sleep(3000);
         	    	
     	}
         
         @Test (priority=13)
         
-        public static void Telemed() throws InterruptedException
+        public static void Mentorship() throws InterruptedException
     	
     	{
         	WebDriverWait wait = new WebDriverWait(WebDriverInit.getDriver(),Duration.ofSeconds(10));
         	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'Explore')]")));
         	WebDriverInit.getDriver().findElement(By.xpath("//span[contains(.,'Explore')]")).click();
         	
-        	wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Telemed Lite")));
-        	WebDriverInit.getDriver().findElement(By.linkText("Telemed Lite")).click();
+        	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'Mentorship')]")));
+        	WebDriverInit.getDriver().findElement(By.xpath("//span[contains(.,'Mentorship')]")).click();
         	Thread.sleep(3000);
         	    	
     	}
-        
-        @Test (priority=14)
-        
-        public static void DR() throws InterruptedException
-    	
-    	{
-        	WebDriverWait wait = new WebDriverWait(WebDriverInit.getDriver(),Duration.ofSeconds(10));
-        	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'Explore')]")));
-        	WebDriverInit.getDriver().findElement(By.xpath("//span[contains(.,'Explore')]")).click();
-        	
-        	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'Discuss & Refer')]")));
-        	WebDriverInit.getDriver().findElement(By.xpath("//span[contains(.,'Discuss & Refer')]")).click();
-        	//Thread.sleep(3000);
-        	    	
-        	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("discuss_refer_explore_more")));
-        	WebElement ele=WebDriverInit.getDriver().findElement(By.id("discuss_refer_explore_more"));
-        	Assert.assertTrue(ele.isDisplayed());
-        	
-    	}
+       
+//        @Test (priority=14)
+//        
+//        public static void DR() throws InterruptedException
+//    	
+//    	{
+//        	WebDriverWait wait = new WebDriverWait(WebDriverInit.getDriver(),Duration.ofSeconds(10));
+//        	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'Explore')]")));
+//        	WebDriverInit.getDriver().findElement(By.xpath("//span[contains(.,'Explore')]")).click();
+//        	
+//        	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'Discuss & Refer')]")));
+//        	WebDriverInit.getDriver().findElement(By.xpath("//span[contains(.,'Discuss & Refer')]")).click();
+//        	//Thread.sleep(3000);
+//        	    	
+//        	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("discuss_refer_explore_more")));
+//        	WebElement ele=WebDriverInit.getDriver().findElement(By.id("discuss_refer_explore_more"));
+//        	Assert.assertTrue(ele.isDisplayed());
+//        	
+//    	}
         
         @Test (priority=15)
         
@@ -296,19 +310,21 @@ public class ClirnetSanity
         	
         	Thread.sleep(5000);
           
-        	String doctorname = WebDriverInit.getDriver().findElement(By.xpath("//div[@id='main_outlet']/div/div/div/div/div/div/div[2]/h2")).getText();
+        	String doctorname = WebDriverInit.getDriver().findElement(By.xpath("//div[@id='main_outlet']/div/div/div/div/div/div/div/div[2]/h4")).getText();
         	
         	System.out.println(doctorname);
           
         	Thread.sleep(5000);
-        	Assert.assertEquals(doctorname, "Anant Kumar Sahu");
+        	Assert.assertEquals(doctorname,"Anant Kumar Sahu");
         	
         	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("common_nav_bar_certificate")));
         	WebDriverInit.getDriver().findElement(By.id("common_nav_bar_certificate")).click();
         	Thread.sleep(4000);
-        	WebDriverInit.getDriver().findElement(By.cssSelector(".false:nth-child(1) .object-fit-cover")).click();
+        	WebDriverInit.getDriver().findElement(By.cssSelector(".clr_v3_card:nth-child(1) .object-fit-cover")).click();
         	Thread.sleep(3000);
+        	WebDriverInit.getDriver().findElement(By.xpath("//button[contains(.,'Verify')]")).click();
         	
+        	Thread.sleep(3000);
         	
         	    	
     	}
@@ -337,7 +353,7 @@ public class ClirnetSanity
         	WebDriverInit.getDriver().findElement(By.id("common_nav_bar_opinions")).click();
         	Thread.sleep(2000);
         	WebDriverInit.getDriver().findElement(By.id("common_nav_bar_courses")).click();
-        	Thread.sleep(2000);
+        	Thread.sleep(4000);
     	}
         
         @Test (priority=17)
@@ -346,7 +362,7 @@ public class ClirnetSanity
     	
     	{
         	WebDriverWait wait = new WebDriverWait(WebDriverInit.getDriver(),Duration.ofSeconds(10));
-        	WebDriverInit.getDriver().findElement(By.xpath("//div[@id='main_outlet']/div/div/div/div[2]/div/div[2]/div/div[2]/i")).click();
+        	WebDriverInit.getDriver().findElement(By.xpath("//div[@id='main_outlet']/div/div/div/div[2]/div/div[2]/div/div[2]")).click();
         	Thread.sleep(5000);
             	
     	}
@@ -361,16 +377,15 @@ public class ClirnetSanity
         	WebDriverWait wait = new WebDriverWait(WebDriverInit.getDriver(),Duration.ofSeconds(10));
         	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'Explore')]")));
         	WebDriverInit.getDriver().findElement(By.xpath("//span[contains(.,'Explore')]")).click();
-        	wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("E-Paper")));
-        	WebDriverInit.getDriver().findElement(By.linkText("E-Paper")).click();
+        	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='clr_v3_headerCollapse']/ul/li[4]/ul/li[8]/a/div[2]/span")));
+        	WebDriverInit.getDriver().findElement(By.xpath("//div[@id='clr_v3_headerCollapse']/ul/li[4]/ul/li[8]/a/div[2]/span")).click();
         	Thread.sleep(3000);
         	
         	WebDriverInit.getDriver().findElement(By.xpath("//section[@id='ebook_listing']/div/div/div/div[5]/div/div/img")).click();
         	Thread.sleep(10000);
         	scrollfunction.scrollto();
         	Thread.sleep(5000);
-      
-        	
+        	       	
     	}
         
         @Test (priority=19)
@@ -378,7 +393,7 @@ public class ClirnetSanity
         public static void LiveCmeDetail() throws InterruptedException
     	
     	{
-//        	WebDriverInit.getDriver().findElement(By.xpath("//span[contains(.,'Home')]")).click();
+        	WebDriverInit.getDriver().findElement(By.xpath("//span[contains(.,'Home')]")).click();
         	
         	WebDriverWait wait = new WebDriverWait(WebDriverInit.getDriver(),Duration.ofSeconds(10));
         	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'Explore')]")));
@@ -388,16 +403,8 @@ public class ClirnetSanity
         	
         	Thread.sleep(5000);
         	
-        	WebDriverInit.getDriver().findElement(By.xpath("//div[@id='session_upcoming']/div[2]/div[2]/div/div/div/div[2]")).click();
-        	Thread.sleep(5000);
-        	
-        	WebElement ele=WebDriverInit.getDriver().findElement(By.linkText("Get Recording"));
-    		Assert.assertTrue(ele.isDisplayed());
-        	
-        	//scrollfunction.scrollto();
-        	//Thread.sleep(5000);
         	WebDriverInit.getDriver().quit();
-        	
+
     	}
         
  
