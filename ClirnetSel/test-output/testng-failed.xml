@@ -5,8 +5,8 @@
     <classes>
       <class name="com.clirnet.sanity.ClirnetSanity">
         <methods>
-          <include name="ClickGrandRounds"/>
-          <include name="LiveCmeDetail"/>
+          <include name="LiveMedWikiClick"/>
+          <include name="EditProfile"/>
         </methods>
       </class> <!-- com.clirnet.sanity.ClirnetSanity -->
     </classes>
