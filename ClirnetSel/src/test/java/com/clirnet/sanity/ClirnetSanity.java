@@ -152,7 +152,6 @@ public class ClirnetSanity
         	wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Live CME")));
         	WebDriverInit.getDriver().findElement(By.linkText("Live CME")).click();
         	Thread.sleep(2000);
-        	    	
     	}
         
         @Test (priority=6)
@@ -164,8 +163,8 @@ public class ClirnetSanity
         	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'Explore')]")));
         	WebDriverInit.getDriver().findElement(By.xpath("//span[contains(.,'Explore')]")).click();
         	
-        	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'MedWikiÂ®')]")));
-        	WebDriverInit.getDriver().findElement(By.xpath("//span[contains(.,'MedWikiÂ®')]")).click();
+        	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(.,'MedWiki®')]")));
+        	WebDriverInit.getDriver().findElement(By.xpath("//span[contains(.,'MedWiki®')]")).click();
         	Thread.sleep(2000);
         	
     	}
@@ -325,7 +324,7 @@ public class ClirnetSanity
 //        	WebDriverInit.getDriver().findElement(By.xpath("//button[contains(.,'Verify')]")).click();
 //        	
 //        	Thread.sleep(3000);
-        	
+//        	
         	    	
     	}
         
