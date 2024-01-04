@@ -322,9 +322,9 @@ public class ClirnetSanity
         	Thread.sleep(4000);
         	WebDriverInit.getDriver().findElement(By.cssSelector(".clr_v3_card:nth-child(1) .object-fit-cover")).click();
         	Thread.sleep(3000);
-        	WebDriverInit.getDriver().findElement(By.xpath("//button[contains(.,'Verify')]")).click();
-        	
-        	Thread.sleep(3000);
+//        	WebDriverInit.getDriver().findElement(By.xpath("//button[contains(.,'Verify')]")).click();
+//        	
+//        	Thread.sleep(3000);
         	
         	    	
     	}
