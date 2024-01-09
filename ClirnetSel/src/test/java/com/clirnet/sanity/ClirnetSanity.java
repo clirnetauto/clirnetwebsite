@@ -43,6 +43,7 @@ public class ClirnetSanity
 		//Logger logger = Logger.getLogger("");
 		WebDriverInit.getDriver().manage().window().maximize();
 		
+		
 //URL configuartion		
 		//Stagging URL
 		//WebDriverInit.getDriver().get("https://doc.clirnet.com/");
