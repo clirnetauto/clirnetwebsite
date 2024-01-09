@@ -66,7 +66,6 @@ public static String chromepath;
 //Local Setup
 //	
 			driver = new ChromeDriver();
-			
 			WebDriverInit.initDriver(driver);
 		
 
